@@ -6,23 +6,42 @@ function getRandomInt(max) {
 }
 
 function getComputerChoice() {
-  let randomNum = getRandomInt(3);
+  const randomNum = getRandomInt(3);
   let choice;
 
   if (randomNum === 0) {
-    choice = "Rock";
+    choice = "rock";
   } else if (randomNum === 1) {
-    choice = "Paper";
+    choice = "paper";
   } else {
-    choice = "Scissors";
+    choice = "scissors";
   }
 
   return choice;
 }
 
 function getHumanChoice() {
-  let choice = prompt("Choose Rock, Paper, or Scissors:");
+  const choice = prompt("Choose Rock, Paper, or Scissors:");
   return choice.toLowerCase();
 }
 
-function playRound(humanChoice, computerChoice) {}
+function playRound(humanChoice, computerChoice) {
+  if (humanChoice === computerChoice) {
+    console.log("Its a DRAW!");
+  } else if (
+    (humanChoice === "rock" && computerChoice === "scissors") ||
+    (humanChoice === "paper" && computerChoice === "rock") ||
+    (humanChoice === "scissors" && computerChoice === "paper")
+  ) {
+    console.log(`You WIN! ${humanChoice} beats ${computerChoice}`);
+    return humanScore++;
+  } else {
+    console.log(`You LOSE! ${computerChoice} beats ${humanChoice}`);
+    return computerScore++;
+  }
+}
+
+const humanSelection = getHumanChoice();
+const computerSelection = getComputerChoice();
+
+playRound(humanSelection, computerSelection);
